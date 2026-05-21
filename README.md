@@ -6,6 +6,8 @@ An anonymous, culturally-grounded companion for young Rwandans. Built on Rwanda'
 
 A solo project for the Claude Builder Club @ ALU Hackathon · Spring 2026 · Track 2 — Neuroscience & Mental Health.
 
+**Live:** [mbwira-chi.vercel.app](https://mbwira-chi.vercel.app)
+
 ---
 
 ## Why this exists
