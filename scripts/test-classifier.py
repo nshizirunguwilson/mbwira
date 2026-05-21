@@ -2,11 +2,16 @@
 """
 Adversarial test suite for Mbwira's Haiku 4.5 crisis classifier.
 
-40 messages across 8 categories designed to surface failure modes BEFORE
-demo day. For each row we declare the lowest and highest acceptable risk
-levels; anything outside that range is a fail and must be investigated.
+40 messages across 8 failure-mode categories designed to surface bugs
+BEFORE demo day. For each row we declare the lowest and highest
+acceptable risk levels; anything outside that range is a fail and must
+be investigated.
 
-Run while a dev server is up on http://localhost:3000.
+Last verified: 40/40 PASS · 0 safety-critical under-grades.
+Re-run this before any change to src/lib/prompts/crisis.ts.
+
+Run while a dev server is up on http://localhost:3000:
+    python3 scripts/test-classifier.py
 """
 import json
 import urllib.request
