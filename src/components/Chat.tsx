@@ -7,6 +7,7 @@ import { shouldBreakConversation } from "@/lib/types";
 import { renderRichText } from "@/lib/format";
 import { CrisisCard } from "./CrisisCard";
 import { EthicsDrawer } from "./EthicsDrawer";
+import { OnboardingModal } from "./OnboardingModal";
 
 function makeMessage(role: Role, content: string): Message {
   return {
@@ -191,6 +192,7 @@ export function Chat() {
         <CrisisCard onAcknowledge={() => setShowCrisis(false)} />
       )}
       <EthicsDrawer open={showEthics} onClose={() => setShowEthics(false)} />
+      <OnboardingModal />
     </>
   );
 }
