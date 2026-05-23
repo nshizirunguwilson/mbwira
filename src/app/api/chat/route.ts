@@ -2,6 +2,7 @@ import { NextRequest } from "next/server";
 import { z } from "zod";
 import { getAnthropic, CHAT_MODEL, NO_KEY_BODY } from "@/lib/anthropic";
 import { MBWIRA_SYSTEM_PROMPT } from "@/lib/prompts/system";
+import { rateLimit, getClientIp, tooManyRequests } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -19,6 +20,9 @@ const Body = z.object({
 });
 
 export async function POST(req: NextRequest) {
+  const rl = rateLimit(`chat:${getClientIp(req)}`, 20, 60_000);
+  if (!rl.ok) return tooManyRequests(rl.resetAt);
+
   let parsed;
   try {
     parsed = Body.parse(await req.json());

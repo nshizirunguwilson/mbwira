@@ -3,6 +3,7 @@ import { NextRequest } from "next/server";
 import { z } from "zod";
 import { getAnthropic, CRISIS_MODEL, NO_KEY_BODY } from "@/lib/anthropic";
 import { CRISIS_CLASSIFIER_PROMPT } from "@/lib/prompts/crisis";
+import { rateLimit, getClientIp, tooManyRequests } from "@/lib/rate-limit";
 import type { RiskAssessment } from "@/lib/types";
 
 export const runtime = "nodejs";
@@ -25,6 +26,9 @@ function safeFallback(): RiskAssessment {
 }
 
 export async function POST(req: NextRequest) {
+  const rl = rateLimit(`classify:${getClientIp(req)}`, 30, 60_000);
+  if (!rl.ok) return tooManyRequests(rl.resetAt);
+
   let parsed: z.infer<typeof Body>;
   try {
     parsed = Body.parse(await req.json());
