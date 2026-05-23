@@ -151,7 +151,7 @@ export function Chat() {
 
   return (
     <>
-      <div className="mx-auto flex min-h-dvh max-w-3xl flex-col px-5 sm:px-8">
+      <div className="mx-auto flex min-h-dvh max-w-4xl flex-col px-5 sm:px-10">
         <header className="flex items-center justify-between pt-8 pb-4">
           <div className="flex items-baseline gap-2.5">
             <span className="font-serif text-xl text-ink">Mbwira</span>
