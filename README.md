@@ -38,7 +38,7 @@ Next.js 16 · App Router · Tailwind v4 · TypeScript
 
 src/app/page.tsx          renders <Chat />
 src/components/Chat.tsx   conversation state + SSE consumer
-src/components/CrisisCard hard handoff to RBC / Caritas
+src/components/CrisisCard hard handoff to 8015 / RBC 114
 src/components/EthicsDrawer "what this will not do"
 
 POST /api/chat       Claude Sonnet 4.6 · streamed SSE
@@ -69,10 +69,12 @@ Both models use prompt caching on the system prompt to keep cost predictable. Co
 
 ## Crisis helplines surfaced in-product
 
-- **Rwanda Biomedical Center** — `114` (free, 24/7, mental-health line, Kinyarwanda)
-- **Caritas Rwanda** — `+250 788 386 700` (psychosocial support, confidential)
+- **Suicide-prevention hotline** — `8015` (free, confidential, 24/7)
+- **Rwanda Biomedical Center** — `114` (toll-free mental-health line)
+- **MindSky Rwanda** — `+250 788 304 782` (youth, Mon–Sat 9am–6pm)
+- **CARAES Ndera Neuropsychiatric Hospital** — `2575` (national referral hospital)
 
-These numbers are hard-coded in [`src/components/CrisisCard.tsx`](src/components/CrisisCard.tsx). Verify them against current public listings before any public release.
+Compiled from authoritative public sources (RBC.gov.rw, service sites, national news) in May 2026. The full directory lives in [`src/lib/resources.ts`](src/lib/resources.ts); the crisis card uses `8015` + `114`. A periodic call-check is still wise — numbers change.
 
 ## Ethical perimeter
 

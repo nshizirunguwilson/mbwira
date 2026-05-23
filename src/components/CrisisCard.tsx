@@ -31,6 +31,21 @@ export function CrisisCard({ onAcknowledge }: CrisisCardProps) {
         <div className="mt-8 border-t border-mist pt-6 space-y-5">
           <div>
             <p className="text-[11px] uppercase tracking-[0.12em] text-stone">
+              Suicide-prevention hotline
+            </p>
+            <a
+              href="tel:8015"
+              className="font-serif text-2xl text-ink underline decoration-mist decoration-1 underline-offset-4 transition-colors hover:text-clay hover:decoration-clay"
+            >
+              8015
+            </a>
+            <p className="text-[13px] text-stone mt-1">
+              Free, confidential, 24/7.
+            </p>
+          </div>
+
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.12em] text-stone">
               Rwanda Biomedical Center
             </p>
             <a
@@ -40,22 +55,7 @@ export function CrisisCard({ onAcknowledge }: CrisisCardProps) {
               114
             </a>
             <p className="text-[13px] text-stone mt-1">
-              Free, 24/7. Mental-health line.
-            </p>
-          </div>
-
-          <div>
-            <p className="text-[11px] uppercase tracking-[0.12em] text-stone">
-              Caritas Rwanda — psychosocial support
-            </p>
-            <a
-              href="tel:+250788386700"
-              className="font-serif text-2xl text-ink underline decoration-mist decoration-1 underline-offset-4 transition-colors hover:text-clay hover:decoration-clay"
-            >
-              +250 788 386 700
-            </a>
-            <p className="text-[13px] text-stone mt-1">
-              Trained counselors. Confidential.
+              Toll-free mental-health line.
             </p>
           </div>
         </div>

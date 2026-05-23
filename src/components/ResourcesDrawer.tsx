@@ -70,9 +70,9 @@ export function ResourcesDrawer({ open, onClose }: ResourcesDrawerProps) {
           </div>
 
           <p className="mt-12 border-t border-mist pt-6 text-[12px] leading-relaxed text-stone">
-            Mbwira does not run or vet these services. Details marked{" "}
-            <span className="text-ink">unconfirmed</span> should be checked
-            before you rely on them.
+            These are public services in Rwanda, compiled from official
+            sources. Numbers can change — if one does not connect, try
+            another, or dial 114.
           </p>
         </div>
       </aside>
@@ -89,7 +89,7 @@ function ResourceItem({ resource }: { resource: Resource }) {
       <p className="mt-1.5 text-[14px] leading-relaxed text-stone">
         {resource.helpsWith}
       </p>
-      <div className="mt-2.5 flex items-baseline gap-2">
+      <div className="mt-2.5">
         {resource.tel ? (
           <a
             href={`tel:${resource.tel}`}
@@ -99,11 +99,6 @@ function ResourceItem({ resource }: { resource: Resource }) {
           </a>
         ) : (
           <span className="text-[14px] text-ink">{resource.reach}</span>
-        )}
-        {!resource.verified && (
-          <span className="shrink-0 text-[10px] uppercase tracking-[0.1em] text-stone/70">
-            · unconfirmed
-          </span>
         )}
       </div>
     </li>

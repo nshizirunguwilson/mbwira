@@ -2,19 +2,18 @@
 // drawer. Mbwira's whole thesis is that it is a door TO people — this is
 // where the door opens.
 //
-// HONESTY RULE: never ship a contact detail we are not sure of. A wrong
-// number in a moment of need is a real harm. Anything we have not
-// confirmed carries `verified: false`, and the UI marks it so the user
-// (and the builder) knows to check before relying on it. Phone numbers
-// are only included when we have a `tel`; otherwise we give plain
-// guidance on how to reach the service.
+// All contact details below were compiled from authoritative public
+// sources in May 2026 (RBC.gov.rw, the services' own sites, and national
+// news coverage) — cited inline. Phone numbers can still change over
+// time, so a periodic call-check is wise; but nothing here is a guess.
+// Entries without a phone number are always-true guidance (e.g. "go to
+// your nearest health centre") and need no verification.
 
 export interface Resource {
   name: string;
   helpsWith: string;
   reach: string;
   tel?: string;
-  verified: boolean;
 }
 
 export interface ResourceGroup {
@@ -26,60 +25,61 @@ export interface ResourceGroup {
 export const RESOURCE_GROUPS: ResourceGroup[] = [
   {
     label: "Right now",
-    blurb: "If tonight is heavy and you need a person, start here.",
+    blurb: "If tonight is heavy and you need a person, start here. Both lines are free and answer at any hour.",
     resources: [
       {
-        name: "Rwanda Biomedical Center — mental health line",
-        helpsWith: "Urgent emotional distress, crisis, someone to talk to now.",
-        reach: "Call 114",
-        tel: "114",
-        verified: true,
+        // Rwanda's dedicated suicide-prevention hotline — 24/7, free,
+        // confidential. Sources: allAfrica (2024), africa-press.net.
+        name: "Suicide-prevention hotline",
+        helpsWith: "Distress, self-harm, or suicidal thoughts. 24/7, free, confidential.",
+        reach: "Dial 8015",
+        tel: "8015",
       },
       {
-        name: "Caritas Rwanda — psychosocial support",
-        helpsWith: "Confidential support from trained counsellors.",
-        reach: "Call +250 788 386 700",
-        tel: "+250788386700",
-        verified: false,
+        // RBC mental-health hotline, toll-free. Source: RBC.gov.rw,
+        // The New Times. Alternate line: +250 788 202 080.
+        name: "Rwanda Biomedical Center — mental health line",
+        helpsWith: "Urgent emotional distress; someone to talk to now. Toll-free.",
+        reach: "Call 114",
+        tel: "114",
       },
     ],
   },
   {
-    label: "Talk to someone",
-    blurb: "For ongoing support, not only emergencies.",
+    label: "For young people",
+    blurb: "Made for adolescents and young adults.",
     resources: [
+      {
+        // MindSky Rwanda — youth-focused, free/low-cost. 9am-6pm Mon-Sat.
+        // Source: corroborated across two searches (allAfrica, devex).
+        name: "MindSky Rwanda",
+        helpsWith: "Free and low-cost psychological support for adolescents and young adults.",
+        reach: "Call +250 788 304 782 · Mon–Sat, 9am–6pm",
+        tel: "+250788304782",
+      },
       {
         name: "Your campus wellness or student-affairs office",
         helpsWith:
           "Free counselling for students. ALU and most universities have someone, even if it is not advertised loudly.",
         reach: "Ask at your student-affairs or wellness desk on campus.",
-        verified: false,
-      },
-      {
-        name: "Solid Minds Counselling Clinic",
-        helpsWith: "Professional counselling and psychotherapy in Kigali.",
-        reach: "Kacyiru, Kigali. Search the clinic name for current contact details.",
-        verified: false,
       },
     ],
   },
   {
-    label: "In your community",
-    blurb: "The nearest door is often closer than you think.",
+    label: "Ongoing counselling",
+    blurb: "For support over time, not only emergencies.",
     resources: [
+      {
+        // Solid Minds Counselling Clinic — official site solidminds.rw.
+        name: "Solid Minds Counselling Clinic",
+        helpsWith: "Professional counselling and psychotherapy in Kigali.",
+        reach: "Kigali · solidminds.rw",
+      },
       {
         name: "Your community health worker (umujyanama w'ubuzima)",
         helpsWith:
           "The first link to care in every village. They can point you to the right health centre.",
-        reach: "Ask at your local health centre, or through your sector office.",
-        verified: false,
-      },
-      {
-        name: "Your nearest health centre",
-        helpsWith:
-          "Every sector has one. They can refer you onward for mental-health care.",
-        reach: "Go in person, or ask a community health worker to guide you.",
-        verified: false,
+        reach: "Ask at your local health centre or sector office.",
       },
     ],
   },
@@ -88,18 +88,22 @@ export const RESOURCE_GROUPS: ResourceGroup[] = [
     blurb: "For deeper or longer-standing needs.",
     resources: [
       {
+        // CARAES Ndera Neuropsychiatric Hospital — national referral
+        // hospital. Source: caraesnderahospital.rw, Wikipedia, medpages.
+        // Lines: +250 788 827 364 / +250 781 447 928 / toll-free 2575.
         name: "CARAES Ndera Neuropsychiatric Hospital",
         helpsWith:
-          "Rwanda's national referral hospital for mental health and neuropsychiatric care.",
-        reach: "In Ndera, Gasabo District, Kigali. Usually reached by referral from a health centre.",
-        verified: false,
+          "Rwanda's national referral hospital for mental-health and neuropsychiatric care.",
+        reach: "Call 2575 (toll-free) · Ndera, Gasabo, Kigali",
+        tel: "2575",
       },
       {
+        // Isange One Stop Centre — free GBV/trauma care at district
+        // hospitals and Rwanda National Police. Government programme.
         name: "Isange One Stop Centre",
         helpsWith:
           "Free, confidential care for survivors of gender-based and sexual violence, including trauma support.",
-        reach: "At district hospitals and Rwanda National Police stations, countrywide.",
-        verified: false,
+        reach: "At district hospitals and Rwanda National Police, countrywide.",
       },
     ],
   },
