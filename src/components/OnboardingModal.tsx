@@ -64,8 +64,7 @@ export function OnboardingModal() {
 
         <div className="mt-10 space-y-6 text-[16px] leading-relaxed text-ink">
           <p>
-            I am Mbwira. I am an AI built by a student at ALU, in Kigali. I am
-            not a therapist. I am not a doctor.
+            I am Mbwira. I am an AI — not a therapist, and not a doctor.
           </p>
           <p>
             Conversations between us are not stored. They vanish when you close
@@ -84,7 +83,7 @@ export function OnboardingModal() {
             </p>
             <a
               href="tel:114"
-              className="font-serif text-xl text-ink hover:text-clay transition-colors"
+              className="font-serif text-xl text-ink underline decoration-mist decoration-1 underline-offset-4 transition-colors hover:text-clay hover:decoration-clay"
             >
               114
             </a>
@@ -98,7 +97,7 @@ export function OnboardingModal() {
             </p>
             <a
               href="tel:+250788386700"
-              className="font-serif text-xl text-ink hover:text-clay transition-colors"
+              className="font-serif text-xl text-ink underline decoration-mist decoration-1 underline-offset-4 transition-colors hover:text-clay hover:decoration-clay"
             >
               +250 788 386 700
             </a>
@@ -115,7 +114,7 @@ export function OnboardingModal() {
           <button
             ref={buttonRef}
             onClick={dismiss}
-            className="text-[13px] uppercase tracking-[0.12em] text-ink hover:text-clay transition-colors focus:outline-none focus:underline underline-offset-4"
+            className="rounded-full border border-ink px-5 py-2 text-[12px] uppercase tracking-[0.12em] text-ink transition-colors hover:bg-ink hover:text-bone focus:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-bone"
           >
             I understand · begin →
           </button>
