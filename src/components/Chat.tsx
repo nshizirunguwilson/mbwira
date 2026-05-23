@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useTransition } from "react";
+import { useCallback, useEffect, useRef, useState, useTransition } from "react";
 import { nanoid } from "nanoid";
 import type { Message, Role, RiskAssessment } from "@/lib/types";
 import { shouldBreakConversation } from "@/lib/types";
@@ -26,7 +26,6 @@ export function Chat() {
   const [showEthics, setShowEthics] = useState(false);
   const [, startTransition] = useTransition();
 
-  const scrollAnchor = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   // Dev-only URL trigger so the crisis and ethics screens are demoable
@@ -41,16 +40,31 @@ export function Chat() {
   }, []);
   /* eslint-enable react-hooks/set-state-in-effect */
 
+  const focusInput = useCallback(() => {
+    textareaRef.current?.focus({ preventScroll: true });
+  }, []);
+
+  // Keep the conversation pinned to the latest message. Instant while
+  // streaming (so it keeps up with tokens), smooth when a turn settles.
   useEffect(() => {
-    scrollAnchor.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: streamingId ? "auto" : "smooth",
+    });
   }, [messages, streamingId]);
 
+  // Auto-grow the composer, capped — past the cap it scrolls internally.
   useEffect(() => {
     const el = textareaRef.current;
     if (!el) return;
     el.style.height = "auto";
-    el.style.height = Math.min(el.scrollHeight, 200) + "px";
+    el.style.height = Math.min(el.scrollHeight, 180) + "px";
   }, [input]);
+
+  // Land in the composer on first paint.
+  useEffect(() => {
+    focusInput();
+  }, [focusInput]);
 
   async function send() {
     const trimmed = input.trim();
@@ -63,6 +77,7 @@ export function Chat() {
     setMessages((prev) => [...prev, userMsg, assistantMsg]);
     setInput("");
     setStreamingId(assistantId);
+    focusInput();
 
     classifyInBackground(trimmed);
 
@@ -98,6 +113,7 @@ export function Chat() {
       );
     } finally {
       setStreamingId(null);
+      focusInput();
     }
   }
 
@@ -135,27 +151,26 @@ export function Chat() {
 
   return (
     <>
-      <div className="mx-auto flex min-h-dvh max-w-2xl flex-col px-6 sm:px-8">
+      <div className="mx-auto flex min-h-dvh max-w-3xl flex-col px-5 sm:px-8">
         <header className="flex items-center justify-between pt-8 pb-4">
-          <div className="flex items-baseline gap-3">
+          <div className="flex items-baseline gap-2.5">
             <span className="font-serif text-xl text-ink">Mbwira</span>
             <span className="h-1.5 w-1.5 rounded-full bg-clay" aria-hidden />
           </div>
           <button
             onClick={() => setShowEthics(true)}
-            className="text-[11px] uppercase tracking-[0.12em] text-stone hover:text-ink transition-colors"
+            className="text-[11px] uppercase tracking-[0.12em] text-stone underline decoration-mist decoration-1 underline-offset-4 transition-colors hover:text-ink hover:decoration-ink"
           >
             What this will not do
           </button>
         </header>
 
-        <main className="flex-1 flex flex-col">
+        <main className="flex flex-1 flex-col">
           {empty ? <EmptyState /> : <MessageList messages={messages} />}
-          <div ref={scrollAnchor} />
         </main>
 
-        <footer className="sticky bottom-0 bg-bone pt-4 pb-6">
-          <div className="border-t border-mist pt-4">
+        <footer className="sticky bottom-0 bg-bone pt-3 pb-5">
+          <div className="rounded-2xl border border-mist bg-bone px-4 pt-3 pb-2.5 shadow-[0_1px_0_rgba(31,27,22,0.02)] transition-colors focus-within:border-stone">
             <textarea
               ref={textareaRef}
               value={input}
@@ -163,34 +178,31 @@ export function Chat() {
               onKeyDown={onKeyDown}
               placeholder={empty ? "What's heavy today?" : "Keep going."}
               rows={1}
-              disabled={!!streamingId}
-              className="w-full resize-none bg-transparent text-[17px] leading-relaxed text-ink placeholder:text-stone focus:outline-none disabled:opacity-50"
+              className="max-h-[180px] w-full resize-none overflow-y-auto break-words bg-transparent text-[17px] leading-relaxed text-ink placeholder:text-stone/80 focus:outline-none"
             />
-            <div className="mt-3 flex items-center justify-between">
+            <div className="mt-2 flex items-center justify-between">
               <p className="text-[11px] text-stone">
                 {streamingId
                   ? "Mbwira is listening."
-                  : "Press Enter to send. Shift + Enter for a new line."}
+                  : "Enter to send · Shift + Enter for a line break"}
               </p>
               <button
                 onClick={() => void send()}
                 disabled={!input.trim() || !!streamingId}
-                className="text-[11px] uppercase tracking-[0.12em] text-ink hover:text-clay transition-colors disabled:text-stone disabled:cursor-not-allowed"
+                className="rounded-full border border-ink px-4 py-1.5 text-[11px] uppercase tracking-[0.12em] text-ink transition-colors hover:bg-ink hover:text-bone disabled:cursor-not-allowed disabled:border-mist disabled:text-stone disabled:hover:bg-transparent disabled:hover:text-stone"
               >
                 Send →
               </button>
             </div>
           </div>
           <p className="mt-3 text-center text-[11px] text-stone">
-            I am an AI built by a student at ALU. I am not a therapist.
-            Conversations vanish when you close this tab.
+            I am an AI, not a therapist. This conversation vanishes when you
+            close the tab.
           </p>
         </footer>
       </div>
 
-      {showCrisis && (
-        <CrisisCard onAcknowledge={() => setShowCrisis(false)} />
-      )}
+      {showCrisis && <CrisisCard onAcknowledge={() => setShowCrisis(false)} />}
       <EthicsDrawer open={showEthics} onClose={() => setShowEthics(false)} />
       <OnboardingModal />
     </>
@@ -199,14 +211,14 @@ export function Chat() {
 
 function EmptyState() {
   return (
-    <div className="flex-1 flex flex-col justify-center py-20">
+    <div className="flex flex-1 flex-col justify-center py-16">
       <p className="text-[11px] uppercase tracking-[0.12em] text-stone">
         A first door
       </p>
-      <h1 className="font-serif text-5xl sm:text-6xl text-ink mt-6 leading-tight">
+      <h1 className="mt-5 font-serif text-5xl leading-tight text-ink sm:text-6xl">
         Speak to me.
       </h1>
-      <p className="mt-6 text-[16px] leading-relaxed text-stone max-w-md">
+      <p className="mt-5 max-w-md text-[16px] leading-relaxed text-stone">
         I am Mbwira. Anonymous. Kinyarwanda, English, or French — whichever
         comes first. I will listen before I say anything back.
       </p>
@@ -216,7 +228,7 @@ function EmptyState() {
 
 function MessageList({ messages }: { messages: Message[] }) {
   return (
-    <div className="flex flex-col gap-8 py-8">
+    <div className="flex flex-col gap-7 py-8">
       {messages.map((m) => (
         <MessageBubble key={m.id} message={m} />
       ))}
@@ -226,26 +238,28 @@ function MessageList({ messages }: { messages: Message[] }) {
 
 function MessageBubble({ message }: { message: Message }) {
   const isUser = message.role === "user";
+
+  if (isUser) {
+    return (
+      <div className="flex animate-fade-in justify-end">
+        <div className="max-w-[82%] rounded-2xl rounded-br-md bg-mist px-4 py-3 text-[16px] leading-relaxed whitespace-pre-wrap text-ink">
+          {message.content}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="animate-fade-in">
-      <p className="text-[11px] uppercase tracking-[0.12em] text-stone mb-2">
-        {isUser ? "You" : "Mbwira"}
+      <p className="mb-2 flex items-center gap-2 text-[11px] uppercase tracking-[0.12em] text-stone">
+        <span className="h-1 w-1 rounded-full bg-clay" aria-hidden />
+        Mbwira
       </p>
-      <div
-        className={
-          isUser
-            ? "text-[17px] leading-relaxed text-ink whitespace-pre-wrap"
-            : "font-serif text-[19px] leading-relaxed text-ink"
-        }
-      >
+      <div className="font-serif text-[19px] leading-relaxed text-ink">
         {message.content ? (
-          isUser ? (
-            message.content
-          ) : (
-            renderRichText(message.content)
-          )
+          renderRichText(message.content)
         ) : (
-          <span className="text-stone italic">listening…</span>
+          <span className="italic text-stone">listening…</span>
         )}
       </div>
     </div>
