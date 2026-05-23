@@ -7,6 +7,7 @@ import { shouldBreakConversation } from "@/lib/types";
 import { renderRichText } from "@/lib/format";
 import { CrisisCard } from "./CrisisCard";
 import { EthicsDrawer } from "./EthicsDrawer";
+import { ResourcesDrawer } from "./ResourcesDrawer";
 import { OnboardingModal } from "./OnboardingModal";
 
 function makeMessage(role: Role, content: string): Message {
@@ -24,6 +25,7 @@ export function Chat() {
   const [streamingId, setStreamingId] = useState<string | null>(null);
   const [showCrisis, setShowCrisis] = useState(false);
   const [showEthics, setShowEthics] = useState(false);
+  const [showResources, setShowResources] = useState(false);
   const [, startTransition] = useTransition();
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -36,6 +38,7 @@ export function Chat() {
       const params = new URLSearchParams(window.location.search);
       if (params.get("demo") === "crisis") setShowCrisis(true);
       if (params.get("demo") === "ethics") setShowEthics(true);
+      if (params.get("demo") === "resources") setShowResources(true);
     }
   }, []);
   /* eslint-enable react-hooks/set-state-in-effect */
@@ -157,12 +160,20 @@ export function Chat() {
             <span className="font-serif text-xl text-ink">Mbwira</span>
             <span className="h-1.5 w-1.5 rounded-full bg-clay" aria-hidden />
           </div>
-          <button
-            onClick={() => setShowEthics(true)}
-            className="text-[11px] uppercase tracking-[0.12em] text-stone underline decoration-mist decoration-1 underline-offset-4 transition-colors hover:text-ink hover:decoration-ink"
-          >
-            What this will not do
-          </button>
+          <nav className="flex items-center gap-4 sm:gap-5">
+            <button
+              onClick={() => setShowResources(true)}
+              className="text-[10px] uppercase tracking-[0.1em] text-stone underline decoration-mist decoration-1 underline-offset-4 transition-colors hover:text-ink hover:decoration-ink sm:text-[11px] sm:tracking-[0.12em]"
+            >
+              Find a human
+            </button>
+            <button
+              onClick={() => setShowEthics(true)}
+              className="text-[10px] uppercase tracking-[0.1em] text-stone underline decoration-mist decoration-1 underline-offset-4 transition-colors hover:text-ink hover:decoration-ink sm:text-[11px] sm:tracking-[0.12em]"
+            >
+              What this won&rsquo;t do
+            </button>
+          </nav>
         </header>
 
         <main className="flex flex-1 flex-col">
@@ -204,6 +215,10 @@ export function Chat() {
 
       {showCrisis && <CrisisCard onAcknowledge={() => setShowCrisis(false)} />}
       <EthicsDrawer open={showEthics} onClose={() => setShowEthics(false)} />
+      <ResourcesDrawer
+        open={showResources}
+        onClose={() => setShowResources(false)}
+      />
       <OnboardingModal />
     </>
   );
@@ -219,7 +234,7 @@ function EmptyState() {
         Speak to me.
       </h1>
       <p className="mt-5 max-w-md text-[16px] leading-relaxed text-stone">
-        I am Mbwira. Anonymous. Kinyarwanda, English, or French — whichever
+        I am Mbwira. Anonymous. Kinyarwanda, English, or French. Whichever
         comes first. I will listen before I say anything back.
       </p>
     </div>
