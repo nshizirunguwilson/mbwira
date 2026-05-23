@@ -35,7 +35,7 @@ export function CrisisCard({ onAcknowledge }: CrisisCardProps) {
             </p>
             <a
               href="tel:114"
-              className="font-serif text-2xl text-ink hover:text-clay transition-colors"
+              className="font-serif text-2xl text-ink underline decoration-mist decoration-1 underline-offset-4 transition-colors hover:text-clay hover:decoration-clay"
             >
               114
             </a>
@@ -50,7 +50,7 @@ export function CrisisCard({ onAcknowledge }: CrisisCardProps) {
             </p>
             <a
               href="tel:+250788386700"
-              className="font-serif text-2xl text-ink hover:text-clay transition-colors"
+              className="font-serif text-2xl text-ink underline decoration-mist decoration-1 underline-offset-4 transition-colors hover:text-clay hover:decoration-clay"
             >
               +250 788 386 700
             </a>
@@ -66,7 +66,7 @@ export function CrisisCard({ onAcknowledge }: CrisisCardProps) {
           </p>
           <button
             onClick={onAcknowledge}
-            className="text-[13px] uppercase tracking-[0.12em] text-stone hover:text-ink transition-colors"
+            className="shrink-0 rounded-full border border-stone px-4 py-1.5 text-[12px] uppercase tracking-[0.12em] text-stone transition-colors hover:border-ink hover:text-ink"
           >
             I have called →
           </button>
