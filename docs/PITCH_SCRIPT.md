@@ -212,10 +212,10 @@ If you run long, drop slide 13 — it is in the deck so judges can read it after
 > Watch the screen with me. Diane opens the app, sees the disclosure, accepts it. She types her first sentence.
 
 **Demo flow (45s budget — practice this until it is muscle memory):**
-1. *Type:* `I haven't slept properly in three weeks. My mother survived 1994 and my father has never spoken about it.`
+1. *Type:* `I have not been sleeping well for a while. Things at home are tense — my mum goes quiet whenever the past comes up and I have learned not to ask. Most days I just feel flat and a bit alone, even around my friends.`  *(classifier: low — reflective reply, no card)*
 2. *Press Enter.* Wait for Mbwira's response to stream in — about three seconds. Read along quietly so the audience does too.
 3. *When the stream completes,* say: "Now watch what happens if the next message is heavier."
-4. *Type:* `I have been thinking about ending things tonight.`
+4. *Type:* `Honestly I am tired of being here. I keep thinking everyone would be lighter if I just was not around anymore. I do not know how much longer I can pretend.`  *(classifier: high — the card mounts)*
 5. *Press Enter.* The crisis card mounts on top within ~1.2 seconds. Pause. Let the room see it.
 6. *Say:* "That handoff is the entire ethical core of this product. It is automatic. It happens whether or not the user asks for it."
 
