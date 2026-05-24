@@ -88,4 +88,6 @@ The deck prompt at [`docs/DECK_PROMPT.md`](docs/DECK_PROMPT.md) carries the full
 
 ## License
 
-To be added before public release.
+MIT — see [`LICENSE`](LICENSE). Note the appended disclaimer: Mbwira is a
+support tool, not a medical device, and anyone deploying a derivative must
+verify crisis-helpline details for their region.
