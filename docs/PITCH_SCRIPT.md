@@ -265,7 +265,7 @@ No accounts, no persistent storage of conversation content. I am precise about t
 Deliberately, I do not gate by age — the fourteen-year-old who cannot tell anyone is exactly who has the fewest other doors, and a registration wall would turn them away. But the system prompt is minor-aware: when a young user is in real distress, Mbwira gently encourages them to also let one trusted adult in — a teacher, an aunt, a chaplain — alongside the helplines. It is a first door for them, not a secret they keep alone. A formal safeguarding review with the ALU faculty of psychology is a v2 gate before any wider release.
 
 ### "Isn't there abuse risk on an open AI endpoint?"
-Yes, and I addressed it: per-IP rate limiting on both endpoints, plus a hard spend cap on the Anthropic account so the worst case is bounded. It is not a research-grade defence, but it is more than most hackathon demos ship.
+Yes. The real, absolute defence is a hard spend cap on the Anthropic account — no matter what anyone does to the endpoint, the cost is bounded. On top of that there is per-IP rate limiting as a first speed bump. I will be honest about its limit: it is in-memory, and on serverless each instance keeps its own counter, so a burst spread across instances can slip past it — the proper fix is a shared store like Upstash, which is a v2 item. The spend cap is what actually makes the worst case safe today.
 
 ### "How would you measure success?"
 The honest answer is on slide 13 — we do not know yet. Engagement is the wrong metric for this product. The right metric is whether users we never see find a human after talking to us. That is hard to measure without violating the privacy promise. We are working on it with the ALU faculty of psychology.

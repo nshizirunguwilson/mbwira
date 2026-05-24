@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title: "Mbwira — Speak to me.",
   description:
     "An anonymous, culturally-grounded companion for young Rwandans. Built on Rwanda's Resilience-Oriented Therapy framework. Not a therapist. A first door.",
-  metadataBase: new URL("https://mbwira.app"),
+  metadataBase: new URL("https://mbwira.wilsonn.tech"),
   openGraph: {
     title: "Mbwira",
     description: "Speak to me. — Kinyarwanda",
