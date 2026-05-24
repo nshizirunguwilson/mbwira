@@ -67,8 +67,9 @@ export function OnboardingModal() {
             I am Mbwira. I am an AI — not a therapist, and not a doctor.
           </p>
           <p>
-            Conversations between us are not stored. They vanish when you close
-            this tab.
+            Your words are sent to Anthropic to write a reply, then let go. I
+            keep nothing — no account, no history, nothing once you close this
+            tab.
           </p>
           <p>
             If you need a human right now, please call one of these instead of
