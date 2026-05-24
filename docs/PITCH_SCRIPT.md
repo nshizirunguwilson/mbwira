@@ -259,7 +259,13 @@ I ran a 40-message adversarial suite across eight failure categories — oblique
 No. The system prompt explicitly forbids that framing. The product is named for what it is — *speak to me* — a place to put words, not a substitute for being held. Slide 10 is the answer to this question.
 
 ### "What about data privacy?"
-No accounts. No persistent storage of conversation content by default. The system prompt is cached on Anthropic's side per their cache policy; the user's words are not. The deployment is on Vercel's Frankfurt region — outside Rwandan jurisdiction but inside the GDPR perimeter. A v2 plan exists to host inside Rwanda once the user base justifies it.
+No accounts, no persistent storage of conversation content. I am precise about this in the product, not vague: the user's words *are* sent to Anthropic to generate the reply — I do not pretend no one ever sees them. What I promise is that *we* keep nothing; nothing survives the closed tab. The deployment is on Vercel's Frankfurt region — inside the GDPR perimeter — with a v2 plan to host inside Rwanda once usage justifies it.
+
+### "It's used by teenagers. What about minors?"
+Deliberately, I do not gate by age — the fourteen-year-old who cannot tell anyone is exactly who has the fewest other doors, and a registration wall would turn them away. But the system prompt is minor-aware: when a young user is in real distress, Mbwira gently encourages them to also let one trusted adult in — a teacher, an aunt, a chaplain — alongside the helplines. It is a first door for them, not a secret they keep alone. A formal safeguarding review with the ALU faculty of psychology is a v2 gate before any wider release.
+
+### "Isn't there abuse risk on an open AI endpoint?"
+Yes, and I addressed it: per-IP rate limiting on both endpoints, plus a hard spend cap on the Anthropic account so the worst case is bounded. It is not a research-grade defence, but it is more than most hackathon demos ship.
 
 ### "How would you measure success?"
 The honest answer is on slide 13 — we do not know yet. Engagement is the wrong metric for this product. The right metric is whether users we never see find a human after talking to us. That is hard to measure without violating the privacy promise. We are working on it with the ALU faculty of psychology.
