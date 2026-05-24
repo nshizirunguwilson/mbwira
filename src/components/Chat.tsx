@@ -272,13 +272,49 @@ function MessageBubble({ message }: { message: Message }) {
       </p>
       <div className="font-serif text-[19px] leading-relaxed text-ink">
         {message.content ? (
-          renderRichText(message.content)
+          <StreamingText text={message.content} />
         ) : (
           <span className="italic text-stone">listening…</span>
         )}
       </div>
     </div>
   );
+}
+
+// Smoothly reveals text character-by-character, decoupled from the
+// network. Claude's deltas arrive in uneven chunks; this paces them into
+// an even, calm reveal — faster when it has fallen behind, so it stays
+// close to the live stream. When caught up, the loop idles (rafRef null).
+function StreamingText({ text }: { text: string }) {
+  const [shown, setShown] = useState("");
+  const lenRef = useRef(0);
+  const rafRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const tick = () => {
+      const cur = lenRef.current;
+      if (cur < text.length) {
+        const gap = text.length - cur;
+        const next = Math.min(text.length, cur + Math.max(2, Math.floor(gap / 10)));
+        lenRef.current = next;
+        setShown(text.slice(0, next));
+        rafRef.current = requestAnimationFrame(tick);
+      } else {
+        rafRef.current = null;
+      }
+    };
+    if (lenRef.current < text.length && rafRef.current === null) {
+      rafRef.current = requestAnimationFrame(tick);
+    }
+    return () => {
+      if (rafRef.current !== null) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
+    };
+  }, [text]);
+
+  return <>{renderRichText(shown)}</>;
 }
 
 async function readSSE(
