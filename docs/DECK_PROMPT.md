@@ -39,7 +39,7 @@ A solo undergraduate at the African Leadership University, Rwandan, working full
 
 ### 1.4 The product, in one paragraph
 
-Mbwira is an anonymous, culturally-grounded mental-health companion for young Rwandans. It speaks the three languages of Rwanda — Kinyarwanda phrases, English, and French. It is built on the Resilience-Oriented Therapy framework developed in Rwanda by Interpeace, not on imported Silicon Valley cognitive-behavioral templates. Every message a user types is silently classified for crisis risk; when risk crosses a threshold, the conversation is interrupted and the user is handed off, on-screen and in plain language, to the Rwanda Biomedical Center mental-health line and to Caritas Rwanda's network. It is not a therapist and it never claims to be one. It is the first door for the twenty-seven percent of Rwandan youth who today have no door at all.
+Mbwira is an anonymous, culturally-grounded mental-health companion for young Rwandans. It speaks the three languages of Rwanda — Kinyarwanda phrases, English, and French. It is built on the Resilience-Oriented Therapy framework developed in Rwanda by Interpeace, not on imported Silicon Valley cognitive-behavioral templates. Beyond listening, it can offer one small, evidence-based tool when it fits — a grounding exercise, a way to breathe, a line to write down — and a directory of real Rwandan services is always one tap away. Every message a user types is silently classified for crisis risk; when risk crosses a threshold, the conversation is interrupted and the user is handed off, on-screen and in plain language, to Rwanda's suicide-prevention line (8015) and the Rwanda Biomedical Center mental-health line (114). It is not a therapist and it never claims to be one. It is the first door for the twenty-seven percent of Rwandan youth who today have no door at all.
 
 ### 1.5 The single most important sentence in this brief
 
@@ -203,7 +203,7 @@ For each slide below, follow the layout intent precisely. The copy in quotation 
 - Three rows, body face, sixteen-point body and twelve-point label, three columns: **Option / Barrier / Outcome for Diane**.
 
   - Row 1: "University counselor." / "One per several hundred students. Booked weeks out. Office hours only." / "Diane does not book."
-  - Row 2: "Helpline (RBC, Caritas)." / "Voice-only. Requires saying things aloud she has never said aloud." / "Diane does not call."
+  - Row 2: "Helpline (RBC 114, suicide line 8015)." / "Voice-only. Requires saying things aloud she has never said aloud." / "Diane does not call."
   - Row 3: "A general-purpose AI chatbot." / "Trained on Western clinical idioms. Has never heard of *guhahamuka*. Cannot detect crisis nuance." / "Diane closes the tab."
 - Beneath the table, separated by forty-eight pixels of air, one line in the headline face at thirty-two points, left-aligned: "The first door does not exist yet."
 
@@ -224,7 +224,7 @@ For each slide below, follow the layout intent precisely. The copy in quotation 
 
   - **01 — You arrive.** No account. No name. A single sentence: "What's heavy today?"
   - **02 — You speak.** In Kinyarwanda, English, or French. Mid-sentence language switches are welcome.
-  - **03 — Mbwira listens, in the way Rwandan resilience therapy listens.** It does not diagnose. It does not advise. It reflects, names, and holds.
+  - **03 — Mbwira listens, in the way Rwandan resilience therapy listens.** It does not diagnose. It does not prescribe. It reflects and names — and, when it fits, offers one small evidence-based tool: a grounding exercise, a way to breathe, a sentence to write down.
   - **04 — When risk rises, the room changes.** The conversation pauses. A card appears with one phone number, one name, one sentence: *Please reach out to a human right now.*
 
 - Beneath the flow, separated by forty-eight pixels, one quiet sentence in the body face, sixteen points, Stone: "Steps one through three are the product. Step four is the point."
@@ -250,7 +250,7 @@ For each slide below, follow the layout intent precisely. The copy in quotation 
 - Five lines beneath, body face, twenty points, Deep Loam, each separated by a Mist hairline:
 
   - **It will not diagnose.** Not depression, not anxiety, not trauma. Diagnosis is a clinical act.
-  - **It will not pretend to be human.** It says, on first message and on demand, *I am an AI built by a student.*
+  - **It will not pretend to be human.** It says, on first message and on demand, *I am an AI.*
   - **It will not handle a crisis alone.** Detected risk above the lowest threshold breaks the conversation and surfaces a human.
   - **It will not remember without permission.** Sessions vanish by default. Memory is opt-in, transparent, and revocable in one tap.
   - **It will not replace what is missing.** Rwanda needs more psychiatrists. Mbwira is a door, not a destination.
@@ -290,7 +290,7 @@ For each slide below, follow the layout intent precisely. The copy in quotation 
 - Three columns beneath, equal width:
 
   - **SHIPPED (DAY 9)** — body face, sixteen points, Deep Loam, three short lines: "Working conversation in English and French · Crisis classifier with hard UI handoff · Tested with five ALU students · Deployed publicly at mbwira.app."
-  - **NEXT 90 DAYS** — three short lines: "Kinyarwanda surface broadened with Mbaza NLP open data · Partnership conversation with RBC and Caritas Rwanda · IRB-style ethics review with the ALU faculty of psychology before any wider release."
+  - **NEXT 90 DAYS** — three short lines: "Kinyarwanda surface broadened with Mbaza NLP open data · Partnership conversation with the Rwanda Biomedical Center and the national suicide-prevention line · IRB-style ethics review with the ALU faculty of psychology before any wider release."
   - **THE OPEN QUESTION** — three short lines: "Mental-health AI is a contested area. The right metric is not engagement. The right metric is whether users we never see found a human after talking to us. We do not yet know how to measure that. We will not pretend otherwise."
 
 - Footer caption, bottom-left, body face, eleven points, Stone: "Honesty in roadmaps is itself part of the ethics."
